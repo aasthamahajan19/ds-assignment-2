@@ -1,14 +1,32 @@
 #include <iostream>
 using namespace std;
-struct Element {int r,c,v;};
+
 int main() {
-    int m=3,n=3,num=3;
-    Element a[3]={{0,0,5},{0,2,8},{2,1,6}};
-    Element t[3];
-    for(int i=0;i<num;i++){
-        t[i].r=a[i].c;
-        t[i].c=a[i].r;
-        t[i].v=a[i].v;
+    int rows, cols, mat[10][10], triplet[100][3], trans[100][3];
+
+    cout << "Enter rows and cols: ";
+    cin >> rows >> cols;
+    cout << "Enter matrix elements:\n";
+    int k = 1;
+    for (int i=0;i<rows;i++) {
+        for (int j=0;j<cols;j++) {
+            cin >> mat[i][j];
+            if (mat[i][j] != 0) {
+                triplet[k][0] = i;
+                triplet[k][1] = j;
+                triplet[k][2] = mat[i][j];
+                k++;
+            }
+        }
     }
-    for(int i=0;i<num;i++) cout<<t[i].r<<" "<<t[i].c<<" "<<t[i].v<<endl;
-}
+    triplet[0][0] = rows; triplet[0][1] = cols; triplet[0][2] = k-1;
+
+    // Transpose
+    trans[0][0] = cols; trans[0][1] = rows; trans[0][2] = triplet[0][2];
+    int t=1;
+    for (int c=0;c<cols;c++) {
+        for (int i=1;i<k;i++) {
+            if (triplet[i][1] == c) {
+                trans[t][0] = triplet[i][1];
+                trans[t][1] = triplet[i][0];
+                trans[t][2] =
