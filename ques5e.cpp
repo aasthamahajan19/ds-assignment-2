@@ -1,17 +1,21 @@
 #include <iostream>
 using namespace std;
 int main() {
-    int n=3;
-    int sym[6]={1,2,3,4,5,6};
-    int a[3][3];
-    int k=0;
+    int n;
+    cin >> n;
+    int size=n*(n+1)/2;
+    int a[size], k=0, s[n][n];
+    for(int i=0;i<size;i++) {
+        cin >> a[i];
+        }
     for(int i=0;i<n;i++){
-        for(int j=i;j<n;j++) a[i][j]=sym[k++];
+        for(int j=0;j<=i;j++){
+            s[i][j]=s[j][i]=a[k++];
+        }
     }
     for(int i=0;i<n;i++){
-        for(int j=0;j<n;j++){
-            if(j<i) cout<<a[j][i]<<" ";
-            else cout<<a[i][j]<<" ";
+        for(int j=0;j<n;j++) {
+            cout<<s[i][j]<<" ";
         }
         cout<<endl;
     }
